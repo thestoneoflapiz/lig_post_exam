@@ -33,7 +33,6 @@ export function login(email, password) {
     })
     .then((res) => {
 
-      console.log(res.data);
       localStorage.setItem('token', res.data.token);
       dispatch(setUser(res.data));
       return res.data;
@@ -70,6 +69,14 @@ export function register(data) {
         })
         .join('');
     });
+  };
+}
+
+export function logout(){
+  return (dispatch) => {
+    localStorage.setItem('token', null);
+    dispatch(setUser({}));
+    return {};
   };
 }
 

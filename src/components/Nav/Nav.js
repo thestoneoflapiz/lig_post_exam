@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logout } from '../../redux/modules/user';
 
 import * as routes from '../../utils/routes';
 import './Nav.scss';
@@ -49,9 +50,9 @@ const Nav = ({ isShow, onHide, user }) => {
         </li>
         <li style={{display: user.token ? '' : 'none'}}>
           <Link
-            to={routes.ADMIN_LOGOUT}
+            to={routes.ADMIN_LOGIN}
             className="nav-link"
-            onClick={onHide}
+            onClick={logout()}
           >
             Logout
           </Link>

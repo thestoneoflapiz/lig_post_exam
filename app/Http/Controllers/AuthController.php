@@ -66,13 +66,4 @@ class AuthController extends Controller
         return response()->json([], 400);
 
     }
-
-    function logout() : JsonResponse
-    {
-        if(Auth::check()){
-            Auth::logout();
-        }
-
-        return response()->json([]);
-    }
 }

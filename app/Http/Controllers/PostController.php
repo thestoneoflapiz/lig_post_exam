@@ -27,6 +27,7 @@ class PostController extends Controller
     function store(Request $request) : JsonResponse
     {
         $data = $request->validate([
+            "image" => ["required"],
             "title" => ["required", "max:250"],
             "content" => ["required", "max:2500"]
         ]);
@@ -34,7 +35,7 @@ class PostController extends Controller
         if($data){
 
             $new_post = new Post;
-            $new_post->image = $request->image ?? null;
+            $new_post->image = $data["image"];
             $new_post->title = $data["title"];
             $new_post->content = $data["content"];
             $new_post->user_id = Auth::id();

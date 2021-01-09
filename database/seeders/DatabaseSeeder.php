@@ -27,15 +27,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Post::create([
+            "image" => "https://static01.nyt.com/images/2020/10/08/realestate/00xp-islandbroker-slide-ZYHP/00xp-islandbroker-slide-ZYHP-superJumbo.jpg",
             "title" => "My First Post!",
             "content" => "I don't actually have anything to say, but, STAY SAFE!",
-            "user_id" => 1,
         ]);
 
         Comment::create([
             "post_id" => 1,
             "body" => "...and GOODLUCK!~",
-            "user_id" => 1,
         ]);
     }
 }

@@ -20,7 +20,7 @@ export function getComments(post) {
   return (dispatch) => {
     return axios({
       baseURL: config.api,
-      url: '/posts/' + post.slug + '/comments',
+      url: '/posts/' + post.id + '/comments',
       method: 'GET'
     })
     .then((res) => {
@@ -33,7 +33,7 @@ export function sendComment(post, data) {
   return (dispatch) => {
     return axios({
       baseURL: config.api,
-      url: '/posts/' + post.slug + '/comments',
+      url: '/posts/' + post.id + '/comments',
       method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
