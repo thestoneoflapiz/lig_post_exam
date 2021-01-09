@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 import * as routes from '../../utils/routes';
 
 import './AdminCard.scss';
+import Button from '../Button';
 
 const PostAdminCard = ({ post }) => (
   <article className="post-admin-card">
     <Link
-      to={routes.generate(routes.ADMIN_POST_DETAILS, post)}
+      to={routes.generate(routes.ADMIN_POST_DETAILS, {slug: post.id})}
       className="post-admin-card-link"
     >
       <time className="post-admin-card-date" dateTime={post.date}>{moment(post.date).format('DD MMM, YYYY')}</time>

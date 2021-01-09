@@ -47,4 +47,36 @@ class PostController extends Controller
 
         return response()->json([], 400);
     }
+
+    function fetch(Request $request) : JsonResponse
+    {
+        $post = Post::find($request->id);
+        return response()->json([
+            "data" => $post
+        ]);
+    }
+
+    function update(Request $request) : JsonResponse
+    {
+        $data = $request->validate([
+            "title" => ["required", "max:250"],
+            "content" => ["required", "max:2500"]
+        ]);
+
+        if($data){
+
+            $update_post = Post::find($request->id);
+            $update_post->image = $request->image ?? null;
+            $update_post->title = $data["title"];
+            $update_post->content = $data["content"];
+            $update_post->user_id = Auth::id();
+            $update_post->save();
+
+            return response()->json([
+                "data" => $update_post
+            ]);
+        }
+
+        return response()->json([], 400);
+    }
 }

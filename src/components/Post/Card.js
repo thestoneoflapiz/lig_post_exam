@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import moment from 'moment';
 
 import * as routes from '../../utils/routes';
@@ -10,7 +11,7 @@ const PostCard = ({ post }) => (
   <article className="post-card">
     <Link
       className="post-card-link"
-      to={routes.generate(routes.POST_DETAILS, post)}
+      to={routes.generate(routes.POST_DETAILS, {slug: post.id})}
     >
       <div className="post-card-image" style={{backgroundImage: `url(${post.image})`}}></div>
       <div className="post-card-info">

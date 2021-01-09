@@ -36,8 +36,6 @@ export function getPost(id) {
 
 export function createPost(data) {
   return (dispatch) => {
-
-    console.log(localStorage);
     return axios({
       baseURL: config.api,
       url: '/posts',
@@ -72,7 +70,7 @@ export function updatePost(data) {
   return (dispatch) => {
     return axios({
       baseURL: config.api,
-      url: '/posts/' + data.slug,
+      url: '/posts/' + data.id,
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -83,7 +81,20 @@ export function updatePost(data) {
       dispatch(setPost(res.data.data));
       return res.data;
     }, (err) => {
-      return err;
+      let res = err.response.data;
+      
+      if(res.hasOwnProperty("message")){
+        alert(res.message);
+        return {
+          "error": res.message
+        };
+      }
+
+      return Object.keys(res.errors)
+        .map((k) => {
+          return res.errors[k].join('');;
+        })
+        .join('');
     });
   };
 }
